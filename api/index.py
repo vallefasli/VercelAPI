@@ -16,7 +16,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = genai.Client()
+# Explicitly pull the API key from Vercel Environment Variables
+api_key = os.environ.get("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 
 class ComplaintRequest(BaseModel):
     text: str
